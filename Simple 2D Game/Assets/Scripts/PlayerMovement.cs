@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 6f;
 
     private bool jumpPressed;
+    private bool attackPressed;
     private bool facingRight = true;
 
     private void Awake()
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
         inputActions.Player.Jump.performed += ctx =>
             jumpPressed = true;
+
+        inputActions.Player.Attack.performed += ctx =>
+            attackPressed = true;
     }
 
     private void OnDisable()
@@ -79,11 +83,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-    }
-
-
     private void Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight)
@@ -117,5 +116,19 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
+    }
+
+
+    public bool ConsumeAttackInput()
+    {
+        if (!attackPressed) return false;
+
+        attackPressed = false;
+        return true;
+    }
+
+    public bool canAttack()
+    {
+        return moveInput.x == 0 && isGrounded() && !onWall();
     }
 }
