@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 10;
     private float direction;
     private bool hit;
     private float lifetime;
@@ -36,6 +36,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.name.Contains("Door"))
+            return;
+
         Debug.Log("Impactó con: " + collision.name);
         hit = true;
         boxCollider.enabled = false;
