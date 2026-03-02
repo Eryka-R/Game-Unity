@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 03bf0821a84555349b868888702e1207
+guid: 678249c914916b94e835a4e48dd3306a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 625453152461131846
-    second: Dead (5)_0
+      213: 1442188046295128234
+    second: Hurt (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dead (5)_0
+      name: Hurt (1)_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 37
-        width: 566
-        height: 435
+        x: 6
+        y: 46
+        width: 354
+        height: 405
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6401810145e0ea800800000000000000
-      internalID: 625453152461131846
+      spriteID: aa85cb6136ea30410800000000000000
+      internalID: 1442188046295128234
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 79de7ae4966a4a64fb526c4964421e25
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dead (5)_0: 625453152461131846
+      Hurt (1)_0: 1442188046295128234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

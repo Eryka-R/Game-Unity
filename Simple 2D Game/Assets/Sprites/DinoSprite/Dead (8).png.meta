@@ -103,12 +103,12 @@ TextureImporter:
       name: Dead (8)_0
       rect:
         serializedVersion: 2
-        x: 108
+        x: 107
         y: 33
-        width: 554
-        height: 206
+        width: 555
+        height: 439
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 13f021a5f73c6e4409adfd499bdb2aba
     internalID: 0
     vertices: []
     indices: 
