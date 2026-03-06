@@ -39,10 +39,14 @@ public class Projectile : MonoBehaviour
         if (collision.name.Contains("Door"))
             return;
 
-        Debug.Log("Impactó con: " + collision.name);
         hit = true;
         boxCollider.enabled = false;
         anim.SetTrigger("explode");
+
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Health>().TakeDamage(1);
+        }
     }
 
     public void SetDirection(float _direction)
