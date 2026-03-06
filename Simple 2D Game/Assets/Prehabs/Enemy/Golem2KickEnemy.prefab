@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6842811983978573438}
   - component: {fileID: 9170197446797245853}
   - component: {fileID: 1368743332365843248}
+  - component: {fileID: 747977732782898324}
   m_Layer: 11
   m_Name: Golem2KickEnemy
   m_TagString: Enemy
@@ -178,6 +179,8 @@ MonoBehaviour:
   startingHealth: 3
   invulnerabilityDuration: 0
   numberOfFlashes: 0
+  components:
+  - {fileID: 1368743332365843248}
 --- !u!114 &1368743332365843248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,9 +195,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GolemEnemy
   attackCooldown: 1
   range: 0.5
-  colliderDistance: 2.3
   damage: 1
+  colliderDistance: 2.3
   boxCollider: {fileID: 6842811983978573438}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &747977732782898324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559224416704054380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0afb4221c974145ba57605f46e01c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
+  damage: 1

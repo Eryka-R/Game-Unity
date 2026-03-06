@@ -103,12 +103,12 @@ TextureImporter:
       name: 0_Golem_Throwing_010_0
       rect:
         serializedVersion: 2
-        x: 282
-        y: 146
-        width: 378
-        height: 598
+        x: 182
+        y: 124
+        width: 472
+        height: 613
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 16b2c8a1412a3544d9c4422f405117fc
     internalID: 0
     vertices: []
     indices: 
