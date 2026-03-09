@@ -3,20 +3,30 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Parameters")]
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float jumpForce = 6f;
+    
     private Rigidbody2D body;
     private PlayerInputActions inputActions;
     private Vector2 moveInput;
     private Animator anim;
     private BoxCollider2D boxCollider;
 
+    [Header("Detection")]
+    [SerializeField] private BoxCollider2D groundCheck;
+    [SerializeField] private BoxCollider2D wallCheck;
+
+    [Header("Layers")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
+    [Header("Wall Slide")]
+    [SerializeField] private float wallSlideSpeed = -4f;
 
     [Header("SFX")]
     [SerializeField] private AudioClip jumpSound;
 
-    public float speed = 3f;
-    public float jumpForce = 6f;
 
     private bool jumpPressed;
     private bool attackPressed;
@@ -57,30 +67,32 @@ public class PlayerMovement : MonoBehaviour
         body.linearVelocity = new Vector2(moveInput.x * speed, body.linearVelocity.y);
         Flip(moveInput.x);
 
+        bool grounded = IsGrounded();
+        bool wallSliding = IsWallSliding();
+
         const float speedThreshold = 0.05f;
         anim.SetBool("walk", Mathf.Abs(body.linearVelocity.x) > speedThreshold);
-        anim.SetBool("grounded", isGrounded());
+        anim.SetBool("grounded", grounded);
 
-        if (onWall() && !isGrounded()) {
-            float maxFallSpeed = -4f;
-            body.linearVelocity = new Vector2(body.linearVelocity.x, maxFallSpeed);
+        if (wallSliding)
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, wallSlideSpeed);
         }
-
 
         if (jumpPressed)
         {
-            if (isGrounded())
+            if (grounded)
             {
                 Jump();
             }
-            // Si luego quieres wall jump real, aqu� lo a�ades (ver opci�n B para rebote)
+            
             jumpPressed = false;
         }
     }
 
     private void Jump()
     {
-        SoundManager.instance.PlaySound(jumpSound);
+        SoundManager.instance.PlaySound(jumpSound); 
         body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
         anim.SetBool("grounded", false);
         anim.SetTrigger("jump");
@@ -106,20 +118,28 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
-        if (body.linearVelocity.y > 0.01f) return false;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(groundCheck.bounds.center, groundCheck.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        return raycastHit.collider != null && body.linearVelocity.y <= 0.05f;
     }
 
-    private bool onWall()
+    private bool IsTouchingWall()
     {
-        if (body.linearVelocity.y > 0.01f) return false;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(wallCheck.bounds.center, wallCheck.bounds.size, 0f, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+        RaycastHit2D raycastHit2 = Physics2D.BoxCast(wallCheck.bounds.center, wallCheck.bounds.size, 0f, new Vector2(transform.localScale.x, 0), 0.1f, groundLayer);
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-        return raycastHit.collider != null;
+        return raycastHit.collider != null || raycastHit2.collider != null;
+    }
+
+
+    private bool IsWallSliding()
+    {
+        bool grounded = IsGrounded();
+        bool touchingWall = IsTouchingWall();
+
+        return touchingWall && !grounded ;
     }
 
 
@@ -133,6 +153,27 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canAttack()
     {
-        return moveInput.x == 0 && isGrounded() && !onWall();
+        return moveInput.x == 0 && IsGrounded() && !IsTouchingWall();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(
+                groundCheck.bounds.center,
+                groundCheck.bounds.size
+            );
+        }
+
+        if (wallCheck != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(
+                wallCheck.bounds.center,
+                wallCheck.bounds.size
+            );
+        }
     }
 }
