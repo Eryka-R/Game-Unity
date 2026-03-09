@@ -6,8 +6,12 @@ public class RangeEnemy : Enemy
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject[] fireballs;
 
+    [Header("Sound Attack")]
+    [SerializeField] private AudioClip rangeAttackSound;
+
     protected override void PerformAttack()
     {
+        SoundManager.instance.PlaySound(rangeAttackSound);
         anim.SetTrigger("rangeAttack");
     }
 
@@ -22,7 +26,7 @@ public class RangeEnemy : Enemy
     }
 
     private void RangedAttack()
-    {
+    { 
         cooldownTimer = 0f;
         fireballs[FindFireball()].transform.position = firepoint.position;
         fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();

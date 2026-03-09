@@ -12,8 +12,9 @@ public class Spikehead : EnemyDamage
     private float checkTimer;
     private bool attacking;
 
-    
-    
+    [Header("Sound")]
+    [SerializeField] private AudioClip spikeheadSound;
+
     private void onEnable()
     {
         Stop();
@@ -65,6 +66,7 @@ public class Spikehead : EnemyDamage
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        SoundManager.instance.PlaySound(spikeheadSound);
         base.OnTriggerEnter2D (collision);
         Stop();
     }

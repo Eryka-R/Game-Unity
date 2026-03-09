@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpSound;
+
     public float speed = 3f;
     public float jumpForce = 6f;
 
@@ -70,13 +73,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jump();
             }
-            // Si luego quieres wall jump real, aquí lo añades (ver opción B para rebote)
+            // Si luego quieres wall jump real, aquï¿½ lo aï¿½ades (ver opciï¿½n B para rebote)
             jumpPressed = false;
         }
     }
 
     private void Jump()
     {
+        SoundManager.instance.PlaySound(jumpSound);
         body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
         anim.SetBool("grounded", false);
         anim.SetTrigger("jump");

@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        if (PlayerInSight() && cooldownTimer >= attackCooldown)
+        if (PlayerInSight() && cooldownTimer >= attackCooldown && playerHealth.currentHealth > 0)
         {
             cooldownTimer = 0f;
             PerformAttack();

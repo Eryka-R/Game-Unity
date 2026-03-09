@@ -14,6 +14,9 @@ public class Firetrap : MonoBehaviour
     private bool triggered;
     private bool active;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip firetrapSound;
+
     private Health playerHealth;
 
     private void Awake()
@@ -60,6 +63,7 @@ public class Firetrap : MonoBehaviour
         spriteRend.color = Color.red; 
 
         yield return new WaitForSeconds(activationDelay);
+        SoundManager.instance.PlaySound(firetrapSound);
         spriteRend.color = Color.white; 
         active = true;
         anim.SetBool("activated", true);

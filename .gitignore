@@ -160,6 +160,8 @@ crashlytics-build.properties
 Thumbs.db
 Desktop.ini
 
+*.mp3
+
 
 # ASSETS 
 Dragon Warrior Files

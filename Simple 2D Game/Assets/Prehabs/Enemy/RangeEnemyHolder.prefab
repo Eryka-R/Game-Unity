@@ -215,6 +215,8 @@ MonoBehaviour:
   numberOfFlashes: 0
   components:
   - {fileID: 4749879156626491716}
+  deathSound: {fileID: 8300000, guid: 4485b1ccabaf98a4b9cc12c2e5bf4c49, type: 3}
+  hurtSound: {fileID: 8300000, guid: da553f47cc193be4f8d8e99ee398aef1, type: 3}
 --- !u!114 &4749879156626491716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +249,7 @@ MonoBehaviour:
   - {fileID: 212836212409718882}
   - {fileID: 9085169807169477317}
   - {fileID: 8098729224154983956}
+  rangeAttackSound: {fileID: 8300000, guid: a7e28aabcf8966b4d97128807632c157, type: 3}
 --- !u!114 &2880988219975931381
 MonoBehaviour:
   m_ObjectHideFlags: 0
