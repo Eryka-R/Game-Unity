@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   startingHealth: 3
-  invulnerabilityDuration: 0
-  numberOfFlashes: 0
+  invulnerabilityDuration: 1
+  numberOfFlashes: 2
   components:
   - {fileID: 4749879156626491716}
   deathSound: {fileID: 8300000, guid: 4485b1ccabaf98a4b9cc12c2e5bf4c49, type: 3}

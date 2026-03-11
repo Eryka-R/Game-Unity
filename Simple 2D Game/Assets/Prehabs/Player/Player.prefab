@@ -289,9 +289,11 @@ MonoBehaviour:
   startingHealth: 3
   invulnerabilityDuration: 2
   numberOfFlashes: 3
-  components: []
+  components:
+  - {fileID: 8666280447048731814}
+  - {fileID: 7387663073264764390}
   deathSound: {fileID: 8300000, guid: 3c656d12504ec9347bbb8a310894c7ef, type: 3}
-  hurtSound: {fileID: 8300000, guid: f12f3808207f4b646ab519f12719c497, type: 3}
+  hurtSound: {fileID: 8300000, guid: beb4c9bce1fce18479535004824ed927, type: 3}
 --- !u!114 &6679108573636908934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,3 +307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
   checkpointSound: {fileID: 8300000, guid: b52449c974ad94648b55ed99f1766dc1, type: 3}
+  victoryScreen: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  MAX_DEATHS: 3

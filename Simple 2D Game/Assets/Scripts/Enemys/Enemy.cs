@@ -30,14 +30,16 @@ public abstract class Enemy : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        if (PlayerInSight() && cooldownTimer >= attackCooldown && playerHealth.currentHealth > 0)
+        bool isPlayerInSight = PlayerInSight();
+        
+        if (isPlayerInSight && cooldownTimer >= attackCooldown && playerHealth.currentHealth > 0)
         {
             cooldownTimer = 0f;
             PerformAttack();
         }
 
         if (enemyPatrol != null)
-            enemyPatrol.enabled = !PlayerInSight();
+            enemyPatrol.enabled = !isPlayerInSight;
     }
 
     protected abstract void PerformAttack();
@@ -52,6 +54,12 @@ public abstract class Enemy : MonoBehaviour
             0f,
             playerLayer
         );
+
+        if (hit.collider == null)
+        {
+            playerHealth = null;
+            return false;
+        }
 
         if (hit.collider != null)
             playerHealth = hit.collider.GetComponent<Health>();
