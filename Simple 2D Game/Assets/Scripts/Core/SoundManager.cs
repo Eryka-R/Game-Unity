@@ -41,29 +41,32 @@ public class SoundManager : MonoBehaviour
         ChangeSourceVolume(baseVolume, "SoundVolume", _change, soundSource);
     }
 
-    private void ChangeSourceVolume(float baseVolume, string volumeName, float _change, AudioSource source)
+    public void ChangeMusicVolume(float _change)
     {
+        float baseVolume = 1f;
+        ChangeSourceVolume(baseVolume, "MusicVolume", _change, musicSource);
+    }
+
+    private void ChangeSourceVolume(float baseVolume, string volumeName, float _change, AudioSource source)
+    { 
         float currentVolume = PlayerPrefs.GetFloat(volumeName, 1);
+        bool currentVolumeIsMax = currentVolume == 1;
         currentVolume += _change;
 
         if (currentVolume < 0){
+            currentVolume = 0;
+        } else if (currentVolume > 1 && !currentVolumeIsMax) {
             currentVolume = 1;
-        } else if (currentVolume > 1){
+        } else if (currentVolumeIsMax) {
             currentVolume = 0;
         }
 
         float finalVolume = currentVolume * baseVolume;
+
         source.volume = finalVolume;
-        PlayerPrefs.SetFloat(volumeName, currentVolume);
+        PlayerPrefs.SetFloat(volumeName, finalVolume);
 
 
-    }
-
-
-    public void ChangeMusicVolume(float _change)
-    {
-        float baseVolume = 0.3f;
-        ChangeSourceVolume(baseVolume, "MusicVolume", _change, musicSource);
     }
 
     public void PauseSound()

@@ -12,10 +12,29 @@ public class UIManager : MonoBehaviour
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
 
+    [Header("Main Menu")]
+    [SerializeField] private GameObject mainMenuScreen;
+
+    [Header("Settings Menu")]
+    [SerializeField] private GameObject settingsMenuScreen;
+
+    [Header("Instructions")]
+    [SerializeField] private GameObject instructionsScreen;
 
     private void Awake() {
-        gameOverScreen.SetActive(false);
-        pauseScreen.SetActive(false);
+        if (gameOverScreen != null && pauseScreen == null){
+           gameOverScreen.SetActive(false);
+            pauseScreen.SetActive(false);
+        }
+        if (mainMenuScreen != null){
+            mainMenuScreen.SetActive(true);
+        }
+        if (settingsMenuScreen != null){
+            settingsMenuScreen.SetActive(false);
+        }
+        if (instructionsScreen != null){
+            instructionsScreen.SetActive(false);
+        }
     }
 
     private void Update()
@@ -61,7 +80,7 @@ public class UIManager : MonoBehaviour
         pauseScreen.SetActive(_status);
 
         Time.timeScale = _status ? 0 : 1;
-        print("Game " + (_status ? "Paused" : "Resumed"));
+        // print("Game " + (_status ? "Paused" : "Resumed"));
     }
 
     public void SoundVolume()
@@ -73,6 +92,27 @@ public class UIManager : MonoBehaviour
     {
         SoundManager.instance.ChangeMusicVolume(0.1f);
     }
+    #endregion
+
+
+    #region Main Menu
+    public void playGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void openSettings()
+    {
+        mainMenuScreen.SetActive(false);
+        settingsMenuScreen.SetActive(true);
+    }
+
+    public void openInstructions()
+    {
+        mainMenuScreen.SetActive(false);
+        instructionsScreen.SetActive(true);
+    }
+
     #endregion
 }
 
