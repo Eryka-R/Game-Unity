@@ -20,8 +20,11 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        ChangeSoundVolume(0);
-        ChangeMusicVolume(0);
+        float soundVolume = PlayerPrefs.GetFloat("SoundVolume", 1f);
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+
+        soundSource.volume = soundVolume;
+        musicSource.volume = musicVolume;
         
     }
 

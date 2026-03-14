@@ -3527,6 +3527,11 @@ MonoBehaviour:
   gameOverScreen: {fileID: 785322267}
   gameOverSound: {fileID: 8300000, guid: ca30adbdba3ca884e9e8de52b99fe177, type: 3}
   pauseScreen: {fileID: 863718660}
+  mainMenuScreen: {fileID: 0}
+  settingsMenuScreen: {fileID: 0}
+  instructionsScreen: {fileID: 0}
+  instructionsScreens: []
+  buttonNext: []
 --- !u!1 &781723599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7142,7 +7147,7 @@ GameObject:
   - component: {fileID: 1572610861}
   - component: {fileID: 1572610863}
   - component: {fileID: 1572610862}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7198,7 +7203,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000011920929, y: 0.9747577}
+  m_Offset: {x: -0.039377093, y: 0.7786138}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7208,7 +7213,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.3072746, y: 11.844361}
+  m_Size: {x: 2.2285202, y: 11.452074}
   m_EdgeRadius: 0
 --- !u!212 &1572610863
 SpriteRenderer:

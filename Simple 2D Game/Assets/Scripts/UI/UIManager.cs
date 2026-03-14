@@ -20,6 +20,9 @@ public class UIManager : MonoBehaviour
 
     [Header("Instructions")]
     [SerializeField] private GameObject instructionsScreen;
+    [SerializeField] private GameObject[] instructionsScreens;
+    [SerializeField] private GameObject[] buttonNext;
+    private int currentInstruction = 0;
 
     private void Awake() {
         if (gameOverScreen != null && pauseScreen == null){
@@ -34,6 +37,16 @@ public class UIManager : MonoBehaviour
         }
         if (instructionsScreen != null){
             instructionsScreen.SetActive(false);
+        }
+        if (instructionsScreens != null){
+            foreach (GameObject screen in instructionsScreens){
+                screen.SetActive(false);
+            }
+        }
+        if (buttonNext != null){
+            foreach (GameObject button in buttonNext){
+                button.SetActive(false);
+            }
         }
     }
 
@@ -111,8 +124,47 @@ public class UIManager : MonoBehaviour
     {
         mainMenuScreen.SetActive(false);
         instructionsScreen.SetActive(true);
+        currentInstruction = 0;
+        buttonNext[currentInstruction].SetActive(true);
+        buttonNext[1].SetActive(false);
+        ShowInstruction(currentInstruction);
     }
 
     #endregion
+
+
+    #region Instructions
+
+    public void NextInstructions()
+    {
+        instructionsScreens[currentInstruction].SetActive(false);
+
+        currentInstruction++;
+
+        if (currentInstruction == instructionsScreens.Length - 1){
+            buttonNext[0].SetActive(false);
+            buttonNext[1].SetActive(true);
+        }
+
+        if (currentInstruction >= instructionsScreens.Length)
+        {
+            instructionsScreen.SetActive(false);
+            foreach (GameObject screen in instructionsScreens){
+                screen.SetActive(false);
+            }
+            mainMenuScreen.SetActive(true);
+            currentInstruction = 0;
+            return;
+        }
+
+        ShowInstruction(currentInstruction);
+    }
+
+    private void ShowInstruction(int index)
+    {
+        instructionsScreens[index].SetActive(true);
+    }
+
+    # endregion
 }
 
