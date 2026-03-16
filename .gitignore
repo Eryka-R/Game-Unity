@@ -161,6 +161,7 @@ Thumbs.db
 Desktop.ini
 
 *.mp3
+**/assets/Resources/Textos
 
 
 # ASSETS 

@@ -22,7 +22,7 @@ public class VolumeText : MonoBehaviour
     }
 
     private void UpdateVolume() {
-        txt.text = $"{textIntro}: {Mathf.RoundToInt(PlayerPrefs.GetFloat(volumeName) * 100)}%";
+        txt.text = $"{textIntro} {Mathf.RoundToInt(PlayerPrefs.GetFloat(volumeName) * 100)}%";
         // txt.text = $"{textIntro}: {(int)(PlayerPrefs.GetFloat(volumeName) * 100)}%" ;
     }
 }

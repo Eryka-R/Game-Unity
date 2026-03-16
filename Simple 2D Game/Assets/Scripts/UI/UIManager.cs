@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private AudioClip gameOverSound;
+    private bool instructionsCompleted = false;
 
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
@@ -20,11 +22,13 @@ public class UIManager : MonoBehaviour
 
     [Header("Instructions")]
     [SerializeField] private GameObject instructionsScreen;
+    [SerializeField] private GameObject instructionsAviso;
     [SerializeField] private GameObject[] instructionsScreens;
     [SerializeField] private GameObject[] buttonNext;
     private int currentInstruction = 0;
 
     private void Awake() {
+        instructionsCompleted = PlayerPrefs.GetInt("InstructionsCompleted", 0) == 1;
         if (gameOverScreen != null && pauseScreen == null){
            gameOverScreen.SetActive(false);
             pauseScreen.SetActive(false);
@@ -37,6 +41,9 @@ public class UIManager : MonoBehaviour
         }
         if (instructionsScreen != null){
             instructionsScreen.SetActive(false);
+        }
+        if (instructionsAviso != null){
+            instructionsAviso.SetActive(false);
         }
         if (instructionsScreens != null){
             foreach (GameObject screen in instructionsScreens){
@@ -111,7 +118,27 @@ public class UIManager : MonoBehaviour
     #region Main Menu
     public void playGame()
     {
+        if (!instructionsCompleted)
+        {
+            if (instructionsAviso != null)
+            {
+                UITextFileLoader.CambiarTextoDesdeFichero(instructionsAviso, TextoID.AvisoInstruccion);
+                StartCoroutine(MostrarAviso());
+            }
+            return;
+        }
         SceneManager.LoadScene(1);
+    }
+
+    IEnumerator MostrarAviso()
+    {
+        instructionsAviso.SetActive(true);
+
+        yield return new WaitForSeconds(10f);
+
+        instructionsAviso.SetActive(false);
+
+        openInstructions();
     }
 
     public void openSettings()
@@ -132,6 +159,14 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region Settings Menu
+    public void MainMenuFromSettings()
+    {
+        mainMenuScreen.SetActive(true);
+        settingsMenuScreen.SetActive(false);
+    }
+
+    #endregion
 
     #region Instructions
 
@@ -154,6 +189,9 @@ public class UIManager : MonoBehaviour
             }
             mainMenuScreen.SetActive(true);
             currentInstruction = 0;
+            instructionsCompleted = true;
+            PlayerPrefs.SetInt("InstructionsCompleted", 1);
+            PlayerPrefs.Save();
             return;
         }
 
@@ -163,6 +201,15 @@ public class UIManager : MonoBehaviour
     private void ShowInstruction(int index)
     {
         instructionsScreens[index].SetActive(true);
+    }
+
+    public void MainMenuFromInstructions()
+    {
+        instructionsScreen.SetActive(false);
+        foreach (GameObject screen in instructionsScreens){
+            screen.SetActive(false);
+        }
+        mainMenuScreen.SetActive(true);
     }
 
     # endregion
