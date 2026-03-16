@@ -44,7 +44,7 @@ public class EnemyProjectile : EnemyDamage
         hit = true;
         base.OnTriggerEnter2D (collision);
         coll.enabled = false;
-        print("Enemys Projectile hit: " + collision.gameObject.tag);
+        // print("Enemys Projectile hit: " + collision.gameObject.tag);
         if (!collision.CompareTag("Heart"))
         {
             if (anim != null)
