@@ -1,4 +1,5 @@
 public enum TextoID
 {
-    AvisoInstruccion
+    AvisoInstruccion,
+    PrimerDialogo,
 }

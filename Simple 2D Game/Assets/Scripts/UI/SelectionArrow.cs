@@ -28,7 +28,7 @@ public class SelectionArrow : MonoBehaviour
         }
 
         // Interact with opciones
-        if (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
         {
             Interact();
         }

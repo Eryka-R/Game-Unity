@@ -5,7 +5,7 @@ The project was created as a learning exercise to explore how to build 2D games 
 
 The main objective of the game is to guide a small dinosaur through different levels while avoiding traps, defeating enemies, and collecting coins.
 
-## 📸 Level 1 Preview
+## Level 1 Preview
 
 ![Level 1 Screenshot](Readme/level1.png)
 

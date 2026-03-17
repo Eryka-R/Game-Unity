@@ -99,7 +99,11 @@ public class UIManager : MonoBehaviour
     {
         pauseScreen.SetActive(_status);
 
-        Time.timeScale = _status ? 0 : 1;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetPauseActive(_status);
+        }
+        // Time.timeScale = _status ? 0 : 1;
         // print("Game " + (_status ? "Paused" : "Resumed"));
     }
 
@@ -122,7 +126,7 @@ public class UIManager : MonoBehaviour
         {
             if (instructionsAviso != null)
             {
-                UITextFileLoader.CambiarTextoDesdeFichero(instructionsAviso, TextoID.AvisoInstruccion);
+                UITextFileLoader.ChangeTextFromFile(instructionsAviso, TextoID.AvisoInstruccion);
                 StartCoroutine(MostrarAviso());
             }
             return;

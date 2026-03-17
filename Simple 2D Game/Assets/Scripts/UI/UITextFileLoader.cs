@@ -1,17 +1,18 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public static class UITextFileLoader
 {
     private const string BASE_PATH = "Textos/";
 
-    public static void CambiarTextoDesdeFichero(GameObject objetoPadre, TextoID idTexto)
+    public static void ChangeTextFromFile(GameObject objetoPadre, TextoID idTexto)
     {
-        string textoPorDefecto = "No hay texto disponible.";
+        string textoPorDefecto = "There is no text available.";
 
         if (objetoPadre == null)
         {
-            Debug.LogError("El objetoPadre es null.");
+            Debug.LogError("The objetoPadre is null.");
             return;
         }
 
@@ -23,7 +24,7 @@ public static class UITextFileLoader
 
         if (textoTMP == null)
         {
-            Debug.LogError($"No se encontró ningún TMP_Text en {objetoPadre.name} ni en sus hijos.");
+            Debug.LogError($"No TMP_Text found on {objetoPadre.name} or its children.");
             return;
         }
 
@@ -32,18 +33,60 @@ public static class UITextFileLoader
 
         if (fichero == null)
         {
-            Debug.LogWarning($"No se encontró {ruta}. Usando texto por defecto.");
+            Debug.LogWarning($"File not found: {ruta}. Using default text.");
             textoTMP.text = textoPorDefecto;
             return;
         }
 
         if (string.IsNullOrWhiteSpace(fichero.text))
         {
-            Debug.LogWarning($"El fichero {idTexto} está vacío. Usando texto por defecto.");
+            Debug.LogWarning($"The file {idTexto} is empty. Using default text.");
             textoTMP.text = textoPorDefecto;
             return;
         }
 
         textoTMP.text = fichero.text;
+    }
+
+
+
+    public static string[] LoadLinesFromFile(TextoID idTexto)
+    {
+        string ruta = BASE_PATH + idTexto.ToString();
+        TextAsset fichero = Resources.Load<TextAsset>(ruta);
+
+        if (fichero == null)
+        {
+            Debug.LogWarning($"File not found: {ruta}. Returning default text.");
+            return new string[] { "There is no text available." };
+        }
+
+        if (string.IsNullOrWhiteSpace(fichero.text))
+        {
+            Debug.LogWarning($"The file {idTexto} is empty. Returning default text.");
+            return new string[] { "There is no text available." };
+        }
+
+        string[] lineas = fichero.text.Split('\n');
+        List<string> resultado = new List<string>();
+
+        foreach (string linea in lineas)
+        {
+            string limpia = linea.Trim();
+
+            if (string.IsNullOrEmpty(limpia))
+                continue;
+
+            if (limpia.StartsWith("#"))
+            {
+                string contenido = limpia.Substring(1).Trim();
+
+                if (!string.IsNullOrEmpty(contenido))
+                {
+                    resultado.Add(contenido);
+                }
+            }
+        }
+        return resultado.ToArray();
     }
 }
