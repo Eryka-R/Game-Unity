@@ -55,16 +55,18 @@ public abstract class Enemy : MonoBehaviour
             playerLayer
         );
 
-        if (hit.collider == null)
+        if (hit.collider != null){
+            playerHealth = hit.collider.GetComponent<Health>();
+            if (playerHealth == null){
+                playerHealth = hit.collider.GetComponentInParent<Health>();
+            }
+        }
+        else
         {
             playerHealth = null;
-            return false;
         }
 
-        if (hit.collider != null)
-            playerHealth = hit.collider.GetComponent<Health>();
-
-        return hit.collider != null;
+        return playerHealth != null;
     }
 
 

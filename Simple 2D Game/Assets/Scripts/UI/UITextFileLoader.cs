@@ -58,13 +58,13 @@ public static class UITextFileLoader
         if (fichero == null)
         {
             Debug.LogWarning($"File not found: {ruta}. Returning default text.");
-            return new string[] { "There is no text available." };
+            return new string[] { "Narrator|There is no text available." };
         }
 
         if (string.IsNullOrWhiteSpace(fichero.text))
         {
             Debug.LogWarning($"The file {idTexto} is empty. Returning default text.");
-            return new string[] { "There is no text available." };
+            return new string[] { "Narrator|There is no text available." };
         }
 
         string[] lineas = fichero.text.Split('\n');
@@ -77,16 +77,10 @@ public static class UITextFileLoader
             if (string.IsNullOrEmpty(limpia))
                 continue;
 
-            if (limpia.StartsWith("#"))
-            {
-                string contenido = limpia.Substring(1).Trim();
-
-                if (!string.IsNullOrEmpty(contenido))
-                {
-                    resultado.Add(contenido);
-                }
-            }
+            resultado.Add(limpia);
         }
+
         return resultado.ToArray();
     }
+
 }

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 30d47eee9ef87ac44b0bccbaf1b9a213
+guid: 515aeccb8c519694d8fe349f4a8e2904
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7406642202034778391
-    second: 0_Golem_Idle Blinking_014_0
+      213: 988981666959911403
+    second: golem2_talking_0
+  - first:
+      213: 613025129037700695
+    second: golem2_talking_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0_Golem_Idle Blinking_014_0
+      name: golem2_talking_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 84
-        width: 829
-        height: 655
+        x: 11
+        y: 0
+        width: 966
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9eecc49c822563990800000000000000
-      internalID: -7406642202034778391
+      spriteID: be9e484169199bd00800000000000000
+      internalID: 988981666959911403
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 53c24a2df84e6f241bfa854852074c20
+    spriteID: cf3212c5e987b7444a03ab0af8d0213e
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +138,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      0_Golem_Idle Blinking_014_0: -7406642202034778391
+      golem2_talking_0: 988981666959911403
+      golem2_talking_1: 613025129037700695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

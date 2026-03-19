@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 30d47eee9ef87ac44b0bccbaf1b9a213
+guid: f535372ce76bfa44c805e371fd7d4566
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7406642202034778391
-    second: 0_Golem_Idle Blinking_014_0
+      213: 6276769341326334261
+    second: ninfa_hablando_2_0
+  - first:
+      213: -5921130702797846288
+    second: ninfa_hablando_2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0_Golem_Idle Blinking_014_0
+      name: ninfa_hablando_2_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 84
-        width: 829
-        height: 655
+        x: 11
+        y: 0
+        width: 990
+        height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9eecc49c822563990800000000000000
-      internalID: -7406642202034778391
+      spriteID: 53991dec5709b1750800000000000000
+      internalID: 6276769341326334261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ninfa_hablando_2_1
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 0
+        width: 202
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f8431f4ffae3dda0800000000000000
+      internalID: -5921130702797846288
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 53c24a2df84e6f241bfa854852074c20
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      0_Golem_Idle Blinking_014_0: -7406642202034778391
+      ninfa_hablando_2_0: 6276769341326334261
+      ninfa_hablando_2_1: -5921130702797846288
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

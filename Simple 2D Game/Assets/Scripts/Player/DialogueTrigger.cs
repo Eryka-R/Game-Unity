@@ -12,7 +12,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (!collision.CompareTag("Player"))
             return;
-
+        
         if (triggerOnce && hasTriggered)
             return;
 
@@ -27,5 +27,7 @@ public class DialogueTrigger : MonoBehaviour
 
         dialogueSystem.StartDialogue(dialogueID);
         hasTriggered = true;
+
+        GameManager.Instance.appearObbject(dialogueID);
     }
 }

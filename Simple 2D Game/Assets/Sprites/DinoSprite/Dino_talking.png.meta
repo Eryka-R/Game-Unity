@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 30d47eee9ef87ac44b0bccbaf1b9a213
+guid: 11c10513f583edb479811bc403f23483
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7406642202034778391
-    second: 0_Golem_Idle Blinking_014_0
+      213: -5218895364020583900
+    second: Dino_talking_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0_Golem_Idle Blinking_014_0
+      name: Dino_talking_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 84
-        width: 829
-        height: 655
+        x: 0
+        y: 0
+        width: 1536
+        height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9eecc49c822563990800000000000000
-      internalID: -7406642202034778391
+      spriteID: 422ce9b3152c297b0800000000000000
+      internalID: -5218895364020583900
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 53c24a2df84e6f241bfa854852074c20
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      0_Golem_Idle Blinking_014_0: -7406642202034778391
+      Dino_talking_0: -5218895364020583900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

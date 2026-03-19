@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,11 +8,16 @@ public class GameManager : MonoBehaviour
     public bool dialogueActive { get; private set; }
     public bool pauseActive { get; private set; }
 
-    [Header("Player State")]
-    [SerializeField] private int playerHealth = 3;
-
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialogueUI;
+
+    [Header("Coins UI")]
+    [SerializeField] private TextMeshProUGUI coinsText;
+
+    [Header("Level 1")]
+    [SerializeField] private GameObject platform1;
+
+    private int coins = 0;
 
     private void Awake()
     {
@@ -28,27 +34,26 @@ public class GameManager : MonoBehaviour
         {
             dialogueUI.SetActive(false);
         }
+
+        if (platform1 != null)
+        {
+            platform1.SetActive(false);
+        }
     }
 
-    public void SetPlayerHealth(int value)
-    {
-        playerHealth = Mathf.Max(0, value);
+    public void AddCoins(int amount){
+        coins += amount;
+        // Debug.Log($"Coins: {coins}");
+        coinsText.text = $"x {coins}";
     }
 
-    public void DamagePlayer(int damage)
-    {
-        playerHealth = Mathf.Max(0, playerHealth - damage);
+    public int GetCoins(){
+        return coins;
     }
 
-    public void HealPlayer(int amount)
-    {
-        playerHealth += amount;
-    }
 
-    public int GetPlayerHealth()
-    {
-        return playerHealth;
-    }
+
+    #region Dialogue Management
 
     public void SetDialogueActive(bool active)
     {
@@ -72,4 +77,37 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = (dialogueActive || pauseActive) ? 0f : 1f;
     }
+
+    public bool IsInputBlocked()
+    {
+        return dialogueActive || pauseActive;
+    }
+    #endregion
+
+
+    #region Levels Management
+    public void appearObbject(TextoID id)
+    {
+        switch (id)
+        {
+            case TextoID.TercerDialogo:
+                ActivateLevel1();
+                break;
+            default:
+                Debug.LogWarning($"No action defined for {id}");
+                break;
+        }
+    }
+    #endregion
+
+
+    #region Level 1
+    public void ActivateLevel1()
+    {
+        if (platform1 != null)
+        {
+            platform1.SetActive(true);
+        }
+    }
+    #endregion
 }

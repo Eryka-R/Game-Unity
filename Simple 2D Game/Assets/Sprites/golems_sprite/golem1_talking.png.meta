@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 30d47eee9ef87ac44b0bccbaf1b9a213
+guid: 048a31a6735c5194ab799b12ec07ce03
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7406642202034778391
-    second: 0_Golem_Idle Blinking_014_0
+      213: 6831425079766795718
+    second: golem1_talking_0
+  - first:
+      213: 4794429979024414365
+    second: golem1_talking_1
+  - first:
+      213: 4247056800712686904
+    second: golem1_talking_2
+  - first:
+      213: -7988481169089748127
+    second: golem1_talking_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0_Golem_Idle Blinking_014_0
+      name: golem1_talking_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 84
-        width: 829
-        height: 655
+        x: 11
+        y: 0
+        width: 971
+        height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9eecc49c822563990800000000000000
-      internalID: -7406642202034778391
+      spriteID: 6c5c1356ae81ece50800000000000000
+      internalID: 6831425079766795718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golem1_talking_1
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 0
+        width: 663
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d96db38f9ac398240800000000000000
+      internalID: 4794429979024414365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golem1_talking_2
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 979
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83df26b88a390fa30800000000000000
+      internalID: 4247056800712686904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golem1_talking_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 622
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 163228593b6332190800000000000000
+      internalID: -7988481169089748127
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 53c24a2df84e6f241bfa854852074c20
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      0_Golem_Idle Blinking_014_0: -7406642202034778391
+      golem1_talking_0: 6831425079766795718
+      golem1_talking_1: 4794429979024414365
+      golem1_talking_2: 4247056800712686904
+      golem1_talking_3: -7988481169089748127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if (Keyboard.current == null) return;
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame && pauseScreen != null)
         {
             bool isActive = pauseScreen.activeSelf;
             PauseGame(!isActive);
@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
     #region Pause
     public void PauseGame(bool _status)
     {
+        if (pauseScreen == null) return;
         pauseScreen.SetActive(_status);
 
         if (GameManager.Instance != null)
