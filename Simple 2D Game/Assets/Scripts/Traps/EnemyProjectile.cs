@@ -41,6 +41,9 @@ public class EnemyProjectile : EnemyDamage
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.name.Contains("trap") || collision.tag.Contains("Trigger")){
+            return;
+        }
         hit = true;
         base.OnTriggerEnter2D (collision);
         coll.enabled = false;

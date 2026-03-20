@@ -3,6 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 10;
+    [SerializeField] private float lifetimeLimit = 3f;
     private float direction;
     private bool hit;
     private float lifetime;
@@ -31,12 +32,12 @@ public class Projectile : MonoBehaviour
         transform.Translate(movementSpeed, 0, 0);
 
         lifetime += Time.deltaTime;
-        if (lifetime > 5) gameObject.SetActive(false);
+        if (lifetime > lifetimeLimit) gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name.Contains("Door"))
+        if (collision.name.Contains("Door") || collision.name.Contains("trap") || collision.tag.Contains("Trigger"))
             return;
 
         hit = true;

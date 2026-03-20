@@ -23,13 +23,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject conversation1Above;
 
     [Header("Room 4")]
-    [SerializeField] private GameObject column1;
+    [SerializeField] private GameObject column1Room4;
     [SerializeField] private GameObject heartCollectible1;
 
     [Header("Room 5")]
     [SerializeField] private GameObject door1;
     [SerializeField] private GameObject door2;
     [SerializeField] private float timeBlockDoors = 10f;
+
+    [Header("Room 9")]
+    [SerializeField] private GameObject column1Room9;
+    [SerializeField] private GameObject column2Room9;
+    [SerializeField] private GameObject EnemyRoom9;
+    [SerializeField] private float timeColumnsDoors = 20f;
+
 
 
     private int coins = 0;
@@ -47,10 +54,13 @@ public class GameManager : MonoBehaviour
 
         dialogueUI.SetActive(false);
         platform1.SetActive(false);
-        column1.SetActive(true);
+        column1Room4.SetActive(true);
         heartCollectible1.SetActive(false);
         door1.SetActive(false);
         door2.SetActive(false);
+        column1Room9.SetActive(false);
+        column2Room9.SetActive(false);
+        EnemyRoom9.SetActive(false);
     }
 
     public void AddCoins(int amount){
@@ -134,12 +144,18 @@ public class GameManager : MonoBehaviour
                 break;
             case triggersID.TriggerRoom4:
                 heartCollectible1.SetActive(true);
-                column1.SetActive(false);
+                column1Room4.SetActive(false);
                 break;
             case triggersID.TriggerRoom5InsideHouse:
                 door1.SetActive(true);
                 door2.SetActive(true);
                 StartCoroutine(DeactivateDoorsAfterTime(timeBlockDoors));
+                break;
+            case triggersID.TriggerRoom9:
+                column1Room9.SetActive(true);
+                column2Room9.SetActive(true);
+                EnemyRoom9.SetActive(true);
+                StartCoroutine(DeactivateColumnsAfterTime(timeColumnsDoors));
                 break;
             default:
                 Debug.LogWarning($"No action defined for trigger {id}");
@@ -152,6 +168,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         door1.SetActive(false);
         door2.SetActive(false);
+    }
+
+    IEnumerator DeactivateColumnsAfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        column1Room9.SetActive(false);
+        column2Room9.SetActive(false);
+        EnemyRoom9.SetActive(false);
     }
 
 
