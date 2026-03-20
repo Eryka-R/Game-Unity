@@ -22,6 +22,8 @@ public class Dialogue : MonoBehaviour
     private bool isTyping;
     private string currentLine;
 
+    private bool pausesGame;
+
     private void Update()
     {
         if (GameManager.Instance == null)
@@ -39,8 +41,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    public void StartDialogue(TextoID dialogueFile)
+    public void StartDialogue(TextoID dialogueFile, bool pauseGame)
     {
+        pausesGame = pauseGame;
         
         string[] rawLines = UITextFileLoader.LoadLinesFromFile(dialogueFile);
 
@@ -61,7 +64,7 @@ public class Dialogue : MonoBehaviour
         index = 0;
         dialogueText.text = "";
 
-        GameManager.Instance.SetDialogueActive(true);
+        GameManager.Instance.SetDialogueActive(true, pausesGame);
         ShowLine(dialogueLines[index]);
     }
 
@@ -207,7 +210,7 @@ public class Dialogue : MonoBehaviour
 
         isTyping = false;
         dialogueText.text = "";
-        GameManager.Instance.SetDialogueActive(false);
+        GameManager.Instance.SetDialogueActive(false, false);
     }
 }
 

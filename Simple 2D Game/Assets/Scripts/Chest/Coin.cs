@@ -11,7 +11,6 @@ public class Coin : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer spriteRend;
-    private bool canBeCollected = false;
     private Collider2D col;
 
     private void Awake()

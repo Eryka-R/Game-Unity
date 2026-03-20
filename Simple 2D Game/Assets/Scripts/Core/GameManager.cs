@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,14 +9,28 @@ public class GameManager : MonoBehaviour
     public bool dialogueActive { get; private set; }
     public bool pauseActive { get; private set; }
 
+    private bool dialoguePausesGame;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialogueUI;
 
     [Header("Coins UI")]
     [SerializeField] private TextMeshProUGUI coinsText;
 
-    [Header("Level 1")]
+    [Header("Room 1")]
     [SerializeField] private GameObject platform1;
+    [SerializeField] private GameObject conversation1Character;
+    [SerializeField] private GameObject conversation1Above;
+
+    [Header("Room 4")]
+    [SerializeField] private GameObject column1;
+    [SerializeField] private GameObject heartCollectible1;
+
+    [Header("Room 5")]
+    [SerializeField] private GameObject door1;
+    [SerializeField] private GameObject door2;
+    [SerializeField] private float timeBlockDoors = 10f;
+
 
     private int coins = 0;
 
@@ -30,15 +45,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        if (dialogueUI != null)
-        {
-            dialogueUI.SetActive(false);
-        }
-
-        if (platform1 != null)
-        {
-            platform1.SetActive(false);
-        }
+        dialogueUI.SetActive(false);
+        platform1.SetActive(false);
+        column1.SetActive(true);
+        heartCollectible1.SetActive(false);
+        door1.SetActive(false);
+        door2.SetActive(false);
     }
 
     public void AddCoins(int amount){
@@ -55,9 +67,10 @@ public class GameManager : MonoBehaviour
 
     #region Dialogue Management
 
-    public void SetDialogueActive(bool active)
+    public void SetDialogueActive(bool active, bool pausesGame = true)
     {
         dialogueActive = active;
+        dialoguePausesGame = active && pausesGame;
 
         if (dialogueUI != null)
         {
@@ -75,23 +88,35 @@ public class GameManager : MonoBehaviour
 
     private void RefreshTimeScale()
     {
-        Time.timeScale = (dialogueActive || pauseActive) ? 0f : 1f;
+        Time.timeScale = (pauseActive || dialoguePausesGame) ? 0f : 1f;
     }
 
     public bool IsInputBlocked()
     {
-        return dialogueActive || pauseActive;
+        return pauseActive || dialoguePausesGame;
     }
     #endregion
 
 
-    #region Levels Management
-    public void appearObbject(TextoID id)
+    #region Room Management
+    public void appearObject(TextoID id)
     {
         switch (id)
         {
             case TextoID.TercerDialogo:
-                ActivateLevel1();
+                ActivateRoom1();
+                break;
+            case TextoID.Conversacion1:
+                if (conversation1Above != null)
+                {
+                    conversation1Above.SetActive(false);
+                }
+                break;
+            case TextoID.Conversacion1Above:
+                if (conversation1Character != null)
+                {
+                    conversation1Character.SetActive(false);
+                }
                 break;
             default:
                 Debug.LogWarning($"No action defined for {id}");
@@ -100,9 +125,38 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public void triggerObject(triggersID id)
+    {
+        Debug.Log($"Triggering object for trigger ID: {id}");
+        switch (id)
+        {
+            case triggersID.None:
+                break;
+            case triggersID.TriggerRoom4:
+                heartCollectible1.SetActive(true);
+                column1.SetActive(false);
+                break;
+            case triggersID.TriggerRoom5InsideHouse:
+                door1.SetActive(true);
+                door2.SetActive(true);
+                StartCoroutine(DeactivateDoorsAfterTime(timeBlockDoors));
+                break;
+            default:
+                Debug.LogWarning($"No action defined for trigger {id}");
+                break;
+        }
+    }
 
-    #region Level 1
-    public void ActivateLevel1()
+    IEnumerator DeactivateDoorsAfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        door1.SetActive(false);
+        door2.SetActive(false);
+    }
+
+
+    #region Room 1
+    public void ActivateRoom1()
     {
         if (platform1 != null)
         {

@@ -5,6 +5,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private TextoID dialogueID;
     [SerializeField] private bool triggerOnce = true;
     [SerializeField] private Dialogue dialogueSystem;
+    [SerializeField] private bool pauseGameDuringDialogue = true;
 
     private bool hasTriggered = false;
 
@@ -25,9 +26,9 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        dialogueSystem.StartDialogue(dialogueID);
+        dialogueSystem.StartDialogue(dialogueID, pauseGameDuringDialogue);
         hasTriggered = true;
 
-        GameManager.Instance.appearObbject(dialogueID);
+        GameManager.Instance.appearObject(dialogueID);
     }
 }

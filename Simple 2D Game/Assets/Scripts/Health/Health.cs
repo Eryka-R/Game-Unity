@@ -5,6 +5,8 @@ public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float startingHealth;
+    [SerializeField] protected triggersID trigger;
+
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
@@ -54,6 +56,7 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("die");
 
                 dead = true;
+                GameManager.Instance.triggerObject(trigger);
                 SoundManager.instance.PlaySound(deathSound);
             }
             
