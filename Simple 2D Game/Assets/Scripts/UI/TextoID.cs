@@ -15,6 +15,9 @@ public enum TextoID
     ConversartionFriend = 12,
     ConversartionFriendNoCompleted = 13,
     AvisoWater = 14,
+    StartSong = 15,
+    Encuesta = 16,
+    DialogoGameOver = 17,
 }
 
 public enum CharacterID
@@ -23,7 +26,10 @@ public enum CharacterID
     MainCharacter,
     Friend,
     Enemy1,
-    Enemy2
+    Enemy2, 
+    Mal_1,
+    Mal_2,
+    Mal_3,
 }
 
 public enum triggersID{
@@ -32,5 +38,9 @@ public enum triggersID{
     TriggerRoom5InsideHouse = 2,
     TriggerRoom9 = 3,
     TriggerRoom12 = 4,
-    TriggerEndFriend = 5
+    TriggerEndFriend = 5,
+    Victory = 6,
+    GameOver = 7,
+    InitTriggerRoom4 = 8,
+    KillEnemyRoom6 = 9,
 }

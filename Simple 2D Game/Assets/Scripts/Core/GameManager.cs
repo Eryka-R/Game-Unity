@@ -25,12 +25,17 @@ public class GameManager : MonoBehaviour
 
     [Header("Room 4")]
     [SerializeField] private GameObject column1Room4;
+    [SerializeField] private GameObject column01Room4;
     [SerializeField] private GameObject heartCollectible1;
 
     [Header("Room 5")]
     [SerializeField] private GameObject door1;
     [SerializeField] private GameObject door2;
     [SerializeField] private float timeBlockDoors = 10f;
+
+    [Header("Room 6")]
+    [SerializeField] private GameObject trap1Room6;
+    [SerializeField] private GameObject trap2Room6;
 
     [Header("Room 9")]
     [SerializeField] private GameObject column1Room9;
@@ -65,6 +70,7 @@ public class GameManager : MonoBehaviour
         dialogueUI.SetActive(false);
         platform1.SetActive(false);
         column1Room4.SetActive(true);
+        column01Room4.SetActive(false);
         heartCollectible1.SetActive(false);
         door1.SetActive(false);
         door2.SetActive(false);
@@ -148,6 +154,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
     public void triggerObject(triggersID id)
     {
         Debug.Log($"Triggering object for trigger ID: {id}");
@@ -155,14 +162,22 @@ public class GameManager : MonoBehaviour
         {
             case triggersID.None:
                 break;
+            case triggersID.InitTriggerRoom4:
+                column01Room4.SetActive(true);
+                break;
             case triggersID.TriggerRoom4:
                 heartCollectible1.SetActive(true);
                 column1Room4.SetActive(false);
+                column01Room4.SetActive(false);
                 break;
             case triggersID.TriggerRoom5InsideHouse:
                 door1.SetActive(true);
                 door2.SetActive(true);
                 StartCoroutine(DeactivateDoorsAfterTime(timeBlockDoors));
+                break;
+            case triggersID.KillEnemyRoom6:
+                trap2Room6.SetActive(false);
+                trap1Room6.SetActive(false);
                 break;
             case triggersID.TriggerRoom9:
                 column1Room9.SetActive(true);
@@ -179,6 +194,12 @@ public class GameManager : MonoBehaviour
                 }
                 else{
                     ConversationFriendNotCompleted.SetActive(true);
+                }
+                break;
+
+            case triggersID.Victory:
+                if (UIManager.Instance != null){
+                    UIManager.Instance.Victory();
                 }
                 break;
             default:

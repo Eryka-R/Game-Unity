@@ -14,6 +14,9 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Enemy1;
     [SerializeField] private GameObject Enemy2;
+    [SerializeField] private GameObject Mal_1;
+    [SerializeField] private GameObject Mal_2;
+    [SerializeField] private GameObject Mal_3;
 
     private DialogueLineData[] dialogueLines;
     private int index;
@@ -113,6 +116,9 @@ public class Dialogue : MonoBehaviour
         Friend.SetActive(false);
         Enemy1.SetActive(false);
         Enemy2.SetActive(false);
+        Mal_1.SetActive(false);
+        Mal_2.SetActive(false);
+        Mal_3.SetActive(false);
 
         switch (character)
         {
@@ -134,6 +140,18 @@ public class Dialogue : MonoBehaviour
 
             case CharacterID.Enemy2:
                 Enemy2.SetActive(true);
+                break;
+            
+            case CharacterID.Mal_1:
+                Mal_1.SetActive(true);
+                break;
+                
+            case CharacterID.Mal_2:
+                Mal_2.SetActive(true);
+                break;  
+
+            case CharacterID.Mal_3:
+                Mal_3.SetActive(true);  
                 break;
         }
     }

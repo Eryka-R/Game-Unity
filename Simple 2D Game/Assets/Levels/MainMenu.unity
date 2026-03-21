@@ -3424,6 +3424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   gameOverScreen: {fileID: 0}
   gameOverSound: {fileID: 0}
+  victoryScreen: {fileID: 0}
   pauseScreen: {fileID: 0}
   mainMenuScreen: {fileID: 1205477611}
   settingsMenuScreen: {fileID: 919566654}
@@ -4167,7 +4168,8 @@ MonoBehaviour:
     y aparentemente el \xFAnico que decidi\xF3 salir hoy a una aventura.\n\n\nA \u2192
     Moverse a la izquierda\nD \u2192 Moverse a la derecha\nBarra espaciadora \u2192
     Saltar \nEnter \u2192 Disparar\n\nNota importante:\nTu dino solo puede disparar
-    cuando est\xE1 quieto.\n\n\n"
+    cuando est\xE1 quieto.\nEs un juego hecho por m\xED, oseaa, que hay errores.
+    cuando saltes, no te pegue a la plataforma\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
   m_sharedMaterial: {fileID: -2180901102672533243, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}

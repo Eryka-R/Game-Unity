@@ -5,11 +5,17 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private AudioClip gameOverSound;
     private bool instructionsCompleted = false;
+
+    [Header("Victory Screen")]
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private CanvasGroup victoryCanvasGroup;
+    [SerializeField] private float victoryFadeDuration = 2f;
 
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
@@ -28,8 +34,16 @@ public class UIManager : MonoBehaviour
     private int currentInstruction = 0;
 
     private void Awake() {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         instructionsCompleted = PlayerPrefs.GetInt("InstructionsCompleted", 0) == 1;
-        if (gameOverScreen != null && pauseScreen == null){
+        if (gameOverScreen != null && pauseScreen != null){
            gameOverScreen.SetActive(false);
             pauseScreen.SetActive(false);
         }
@@ -54,6 +68,15 @@ public class UIManager : MonoBehaviour
             foreach (GameObject button in buttonNext){
                 button.SetActive(false);
             }
+        }
+        if (victoryScreen != null){
+            victoryScreen.SetActive(false);
+        }
+        if (victoryCanvasGroup != null)
+        {
+            victoryCanvasGroup.alpha = 0f;
+            victoryCanvasGroup.interactable = false;
+            victoryCanvasGroup.blocksRaycasts = false;
         }
     }
 
@@ -215,6 +238,45 @@ public class UIManager : MonoBehaviour
             screen.SetActive(false);
         }
         mainMenuScreen.SetActive(true);
+    }
+
+    # endregion
+
+    #region Victory
+
+    public void Victory()
+    {
+        if (victoryScreen == null || victoryCanvasGroup == null) return;
+
+        StartCoroutine(ShowVictorySlowly());
+    }
+
+    private IEnumerator ShowVictorySlowly()
+    {
+        victoryScreen.SetActive(true);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetPauseActive(true);
+        }
+        
+        victoryCanvasGroup.alpha = 0f;
+        victoryCanvasGroup.interactable = false;
+        victoryCanvasGroup.blocksRaycasts = false;
+
+        float elapsed = 0f;
+
+        while (elapsed < victoryFadeDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            victoryCanvasGroup.alpha = Mathf.Clamp01(elapsed / victoryFadeDuration);
+            yield return null;
+        }
+
+        victoryCanvasGroup.alpha = 1f;
+        victoryCanvasGroup.interactable = true;
+        victoryCanvasGroup.blocksRaycasts = true;
+        
     }
 
     # endregion

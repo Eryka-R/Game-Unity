@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
@@ -6,18 +7,25 @@ public class SoundManager : MonoBehaviour
     private AudioSource soundSource;
     private AudioSource musicSource;
 
+    private AudioClip previousMusicClip;
+    private float previousMusicTime;
+    private bool wasMusicPlayingBeforeOverride;
+    private Coroutine temporaryMusicCoroutine;
+
     private void Awake()
     {
         soundSource = GetComponent<AudioSource>();
         musicSource = transform.GetChild(0).GetComponent<AudioSource>();
 
-        // Keep the SoundManager alive across scenes
-        if (instance != this){
+        if (instance == null)
+        {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this && instance != null){
+        else if (instance != this)
+        {
             Destroy(gameObject);
+            return;
         }
 
         float soundVolume = PlayerPrefs.GetFloat("SoundVolume", 1f);
@@ -36,6 +44,16 @@ public class SoundManager : MonoBehaviour
     public void StopSound()
     {
         soundSource.Stop();
+    }
+
+    public void PauseSound()
+    {
+        soundSource.Pause();
+    }
+
+    public void ResumeSound()
+    {
+        soundSource.UnPause(); 
     }
 
     public void ChangeSoundVolume(float _change)
@@ -72,14 +90,85 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void PauseSound()
+    public void PlayMusic(AudioClip clip, bool loop = true)
     {
-        soundSource.Pause();
+        if (clip == null) return;
+
+        musicSource.clip = clip;
+        musicSource.loop = loop;
+        musicSource.time = 0f;
+        musicSource.Play();
     }
 
-    public void ResumeSound()
+    public void StopMusic()
     {
-        soundSource.UnPause(); 
+        musicSource.Stop();
     }
 
+    public void PauseMusic()
+    {
+        musicSource.Pause();
+    }
+
+    public void ResumeMusic()
+    {
+        musicSource.UnPause();
+    }
+
+    public void PlayTemporaryMusic(AudioClip temporaryClip, bool loopTemporary = false)
+    {
+        if (temporaryClip == null) return;
+
+        if (temporaryMusicCoroutine != null)
+        {
+            StopCoroutine(temporaryMusicCoroutine);
+            temporaryMusicCoroutine = null;
+        }
+
+        previousMusicClip = musicSource.clip;
+        previousMusicTime = musicSource.time;
+        wasMusicPlayingBeforeOverride = musicSource.isPlaying;
+
+        musicSource.Stop();
+        musicSource.clip = temporaryClip;
+        musicSource.loop = loopTemporary;
+        musicSource.time = 0f;
+        musicSource.Play();
+
+        if (!loopTemporary)
+        {
+            temporaryMusicCoroutine = StartCoroutine(RestorePreviousMusicWhenFinished(temporaryClip.length));
+        }
+    }
+
+    public void RestorePreviousMusic()
+    {
+        if (temporaryMusicCoroutine != null)
+        {
+            StopCoroutine(temporaryMusicCoroutine);
+            temporaryMusicCoroutine = null;
+        }
+
+        if (previousMusicClip == null)
+        {
+            musicSource.Stop();
+            return;
+        }
+
+        musicSource.Stop();
+        musicSource.clip = previousMusicClip;
+        musicSource.loop = true;
+        musicSource.time = previousMusicTime;
+
+        if (wasMusicPlayingBeforeOverride)
+        {
+            musicSource.Play();
+        }
+    }
+
+    private IEnumerator RestorePreviousMusicWhenFinished(float duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        RestorePreviousMusic();
+    }
 }

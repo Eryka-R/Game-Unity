@@ -6,6 +6,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private bool triggerOnce = true;
     [SerializeField] private Dialogue dialogueSystem;
     [SerializeField] private bool pauseGameDuringDialogue = true;
+    [SerializeField] private AudioClip dialogueMusic;
 
     private bool hasTriggered = false;
 
@@ -30,5 +31,10 @@ public class DialogueTrigger : MonoBehaviour
         hasTriggered = true;
 
         GameManager.Instance.appearObject(dialogueID);
+
+        if (dialogueMusic != null)
+        {
+            SoundManager.instance.PlayTemporaryMusic(dialogueMusic);
+        }
     }
 }
