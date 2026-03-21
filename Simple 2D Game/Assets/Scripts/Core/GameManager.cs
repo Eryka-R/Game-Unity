@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Coins UI")]
     [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private int MAX_COINS = 5;
 
     [Header("Room 1")]
     [SerializeField] private GameObject platform1;
@@ -37,9 +38,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject EnemyRoom9;
     [SerializeField] private float timeColumnsDoors = 20f;
 
+    [Header("Room 12")]
+    [SerializeField] private GameObject column1Room12;
+
+    [Header("Room 13")]
+    [SerializeField] private GameObject ConversationFriend;
+    [SerializeField] private GameObject ConversationFriendNotCompleted;
+
+
 
 
     private int coins = 0;
+
 
     private void Awake()
     {
@@ -61,6 +71,9 @@ public class GameManager : MonoBehaviour
         column1Room9.SetActive(false);
         column2Room9.SetActive(false);
         EnemyRoom9.SetActive(false);
+        column1Room12.SetActive(true);
+        ConversationFriend.SetActive(false);
+        ConversationFriendNotCompleted.SetActive(false);
     }
 
     public void AddCoins(int amount){
@@ -156,6 +169,17 @@ public class GameManager : MonoBehaviour
                 column2Room9.SetActive(true);
                 EnemyRoom9.SetActive(true);
                 StartCoroutine(DeactivateColumnsAfterTime(timeColumnsDoors));
+                break;
+            case triggersID.TriggerRoom12:
+                column1Room12.SetActive(false);
+                break;
+            case triggersID.TriggerEndFriend:
+                if (coins == MAX_COINS){
+                    ConversationFriend.SetActive(true);
+                }
+                else{
+                    ConversationFriendNotCompleted.SetActive(true);
+                }
                 break;
             default:
                 Debug.LogWarning($"No action defined for trigger {id}");

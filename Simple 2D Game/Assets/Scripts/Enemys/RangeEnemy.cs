@@ -32,6 +32,7 @@ public class RangeEnemy : Enemy
         {
             playerHealth = null;
         }
+        // print("Player in sight: " + (playerHealth != null) + " " + (hit.collider ? hit.collider.name : "No collider"));
 
 
         return playerHealth != null;

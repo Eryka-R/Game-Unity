@@ -9,8 +9,12 @@ public enum TextoID
     Conversacion1 = 6,
     Conversacion1Above = 7,
     Room5InsideHouse = 8,
-    Room5 = 9,
-    Room4OutsideHouse = 10,
+    AvisoRoom9 = 9,
+    Room6Message = 10,
+    AvisoRoom12 = 11,
+    ConversartionFriend = 12,
+    ConversartionFriendNoCompleted = 13,
+    AvisoWater = 14,
 }
 
 public enum CharacterID
@@ -27,6 +31,6 @@ public enum triggersID{
     TriggerRoom4 = 1,
     TriggerRoom5InsideHouse = 2,
     TriggerRoom9 = 3,
-    Trigger4 = 4,
-    Trigger5 = 5
+    TriggerRoom12 = 4,
+    TriggerEndFriend = 5
 }
