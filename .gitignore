@@ -173,3 +173,4 @@ _Recovery
 Little_Dino
 Sprites
 Audio/*.meta
+/Simple 2D Game/Assets/Audio/**/*.meta
