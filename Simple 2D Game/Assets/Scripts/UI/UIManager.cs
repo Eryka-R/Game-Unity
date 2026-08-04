@@ -42,7 +42,8 @@ public class UIManager : MonoBehaviour
 
         Instance = this;
 
-        instructionsCompleted = PlayerPrefs.GetInt("InstructionsCompleted", 0) == 1;
+        instructionsCompleted = false;
+        // instructionsCompleted = PlayerPrefs.GetInt("InstructionsCompleted", 0) == 1;
         if (gameOverScreen != null && pauseScreen != null){
            gameOverScreen.SetActive(false);
             pauseScreen.SetActive(false);
@@ -162,7 +163,7 @@ public class UIManager : MonoBehaviour
     {
         instructionsAviso.SetActive(true);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(4f);
 
         instructionsAviso.SetActive(false);
 

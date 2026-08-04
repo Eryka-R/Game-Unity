@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject EnemyRoom9;
     [SerializeField] private float timeColumnsDoors = 20f;
 
+    [Header("Room 10")]
+    [SerializeField] private GameObject arrowRoom10;
+
     [Header("Room 12")]
     [SerializeField] private GameObject column1Room12;
 
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
         column1Room12.SetActive(true);
         ConversationFriend.SetActive(false);
         ConversationFriendNotCompleted.SetActive(false);
+        arrowRoom10.SetActive(false);
     }
 
     public void AddCoins(int amount){
@@ -183,7 +187,14 @@ public class GameManager : MonoBehaviour
                 column1Room9.SetActive(true);
                 column2Room9.SetActive(true);
                 EnemyRoom9.SetActive(true);
+                arrowRoom10.SetActive(true);
                 StartCoroutine(DeactivateColumnsAfterTime(timeColumnsDoors));
+                break;
+            case triggersID.ArrowTriggerRoom10:
+                arrowRoom10.SetActive(true);
+                break;
+            case triggersID.ArrowTriggerRoom10Out:
+                arrowRoom10.SetActive(false);
                 break;
             case triggersID.TriggerRoom12:
                 column1Room12.SetActive(false);

@@ -11,7 +11,7 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
 
     [Header("Respawn Settings")]
-    [SerializeField] private int MAX_DEATHS = 3;
+    [SerializeField] private int MAX_DEATHS = 8;
 
     private UIManager uiManager;
     private Transform currentCheckpoint;

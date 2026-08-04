@@ -24,12 +24,16 @@ public enum CharacterID
 {
     Narrator,
     MainCharacter,
+    MainCharacter_Sad,
     Friend,
     Enemy1,
     Enemy2, 
     Mal_1,
     Mal_2,
     Mal_3,
+    Mal_4,
+    Mal_5,
+    Mal_6,
 }
 
 public enum triggersID{
@@ -43,4 +47,6 @@ public enum triggersID{
     GameOver = 7,
     InitTriggerRoom4 = 8,
     KillEnemyRoom6 = 9,
+    ArrowTriggerRoom10 = 10,
+    ArrowTriggerRoom10Out = 11,
 }

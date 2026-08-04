@@ -11,12 +11,16 @@ public class Dialogue : MonoBehaviour
     [Header("Characters")]
     [SerializeField] private GameObject Narrator;
     [SerializeField] private GameObject MainCharacter;
+    [SerializeField] private GameObject MainCharacter_Sad;
     [SerializeField] private GameObject Friend;
     [SerializeField] private GameObject Enemy1;
     [SerializeField] private GameObject Enemy2;
     [SerializeField] private GameObject Mal_1;
     [SerializeField] private GameObject Mal_2;
     [SerializeField] private GameObject Mal_3;
+    [SerializeField] private GameObject Mal_4;
+    [SerializeField] private GameObject Mal_5;
+    [SerializeField] private GameObject Mal_6;
 
     private DialogueLineData[] dialogueLines;
     private int index;
@@ -113,12 +117,16 @@ public class Dialogue : MonoBehaviour
     {
         Narrator.SetActive(false);
         MainCharacter.SetActive(false);
+        MainCharacter_Sad.SetActive(false);
         Friend.SetActive(false);
         Enemy1.SetActive(false);
         Enemy2.SetActive(false);
         Mal_1.SetActive(false);
         Mal_2.SetActive(false);
         Mal_3.SetActive(false);
+        Mal_4.SetActive(false);
+        Mal_5.SetActive(false);
+        Mal_6.SetActive(false);
 
         switch (character)
         {
@@ -128,6 +136,10 @@ public class Dialogue : MonoBehaviour
 
             case CharacterID.MainCharacter:
                 MainCharacter.SetActive(true);
+                break;
+                
+            case CharacterID.MainCharacter_Sad:
+                MainCharacter_Sad.SetActive(true);
                 break;
 
             case CharacterID.Friend:
@@ -152,6 +164,18 @@ public class Dialogue : MonoBehaviour
 
             case CharacterID.Mal_3:
                 Mal_3.SetActive(true);  
+                break;
+
+            case CharacterID.Mal_4:
+                Mal_4.SetActive(true);
+                break;
+            
+            case CharacterID.Mal_5:
+                Mal_5.SetActive(true);
+                break;
+                
+            case CharacterID.Mal_6:
+                Mal_6.SetActive(true);  
                 break;
         }
     }

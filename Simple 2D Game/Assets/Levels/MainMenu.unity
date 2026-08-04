@@ -176,10 +176,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nTienes 3 corazones. Cu\xEDdalos mucho. Los puedes perder si te encuentras
+  m_text: "\nTienes 5 corazones. Cu\xEDdalos mucho. Los puedes perder si te encuentras
     con:\n\n- Enemigos (todo lo que intente atacarte) quitan 1 o 2 corazones.\n\n-
     Trampas (todo lo que tenga mala pinta\u2026 conf\xEDa en tu instinto) tambi\xE9n
-    quitan 1 o 2 corazones.\n\nSi pierdes los 3 corazones\u2026 mueres."
+    quitan 1 o 2 corazones.\n\nSi pierdes los 5 corazones\u2026 mueres."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
   m_sharedMaterial: {fileID: -2180901102672533243, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
@@ -318,7 +318,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\n\nSi mueres, volver\xE1s al \xFAltimo punto de control. Son esos palos
     que se convierten en bandera cuando pasas. S\xED, esos.\n\n\n\n\nSi mueres m\xE1s
-    de 3 veces\u2026 Game Over. (osea revivir en puntos de control)\nTu dino tendr\xE1
+    de 10 veces\u2026 Game Over. (osea revivir en puntos de control)\nTu dino tendr\xE1
     que replantearse sus decisiones de vida.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
@@ -414,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &152109276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3425,6 +3425,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   gameOverSound: {fileID: 0}
   victoryScreen: {fileID: 0}
+  victoryCanvasGroup: {fileID: 0}
+  victoryFadeDuration: 2
   pauseScreen: {fileID: 0}
   mainMenuScreen: {fileID: 1205477611}
   settingsMenuScreen: {fileID: 919566654}
@@ -3517,7 +3519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1399944784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3841,9 +3843,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\nBuena pregunta. Estoy bastante segurA de que el objetivo es: \n- No
-    morir\n- Saltar cosas\n- Disparar cosas \n- Y llegar lo m\xE1s lejos posible\n\nPero
-    si descubres el verdadero objetivo\u2026 av\xEDsame.\n"
+  m_text: "\n\nBuena pregunta. Estoy bastante segura de que el objetivo es: \n- No
+    morir\n- Saltar cosas\n- Disparar cosas \n- Y llegar al final\n\nDisfruta el
+    camino, no te estreses\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
   m_sharedMaterial: {fileID: -2180901102672533243, guid: 339d2b9c671de6c4e8624d78046986ef, type: 2}
